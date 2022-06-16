@@ -1,0 +1,10 @@
+.git
+.gitignore
+.cache
+
+*.md
+
+venv/
+tests/
+pytest.ini
+setup.cfg
