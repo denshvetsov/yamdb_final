@@ -20,26 +20,17 @@ jobs:
 
     - name: Install dependencies
       run: | 
-        # обновление pip
-        python -m pip install --upgrade pip 
-        # установка flake8 и его плагинов
+        python -m pip install --upgrade pip
         pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
-        # установка зависимостей
-        pip install -r api_yamdb/requirements.txt 
+        cd api_yamdb/
+        pip install -r requirements.txt
 
     - name: Test with flake8 and django tests
       run: |
-        #python -m flake8
-        # pytest
-        # запуск проверки проекта по flake8
-        # python -m flake8
-        # перейти в папку, содержащую manage.py — 
-        # <корневая_папка_infra_actions>/<папка_проекта>/manage.py
-        # cd api_yamdb/
-        # запустить написанные разработчиком тесты
-        # pytest
-        # python manage.py test
-        ls -la
+        pytest
+        python -m flake8
+        cd api_yamdb/
+        python manage.py test
 
   build_and_push_to_docker_hub:
       name: Push Docker image to Docker Hub
@@ -64,12 +55,14 @@ jobs:
           uses: docker/build-push-action@v2 
           with:
             push: true
-            file: api_yamdb/Dockerfile
+            context: ./api_yamdb/
+            #file: api_yamdb/Dockerfile
             tags: ${{ secrets.DOCKER_USERNAME }}/yamdb_final:latest
 
   deploy:
       runs-on: ubuntu-latest
       needs: build_and_push_to_docker_hub
+      if: github.ref == 'refs/heads/master'
       steps:
         - name: executing remote ssh commands to deploy
           uses: appleboy/ssh-action@master
@@ -83,7 +76,7 @@ jobs:
               sudo docker compose stop
               sudo docker compose rm web
               sudo rm .env
-              sudo docker pull ${{ secrets.DOCKER_USERNAME }}/yamdb_final:latest
+              #sudo docker pull ${{ secrets.DOCKER_USERNAME }}/yamdb_final:latest
               # sudo docker run -it --name web -d ${{ secrets.DOCKER_USERNAME }}/yamdb_final:latest
               touch .env
               echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
@@ -93,9 +86,9 @@ jobs:
               echo DB_HOST=${{ secrets.DB_HOST }} >> .env
               echo DB_PORT=${{ secrets.DB_PORT }} >> .env
               sudo docker compose up -d
-              sudo docker compose exec -T web python manage.py makemigrations
-              sudo docker compose exec -T web python manage.py migrate
-              sudo docker compose exec -T web python manage.py collectstatic --no-input
+              #sudo docker compose exec -T web python manage.py makemigrations
+              #sudo docker compose exec -T web python manage.py migrate
+              #sudo docker compose exec -T web python manage.py collectstatic --no-input
 
   send_message:
     runs-on: ubuntu-latest
