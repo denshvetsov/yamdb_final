@@ -11,20 +11,20 @@
 #### Настройка GitHub Secrets
 Клонируйте репозиторий и настройте переменные GitHub secrets согласно Вашему окружению
 
-DOCKER_PASSWORD
-DOCKER_USERNAME
-SERVER_HOST #публичный адрес сервера для доступа по SSH
-SERVER_SUDO_USER
-SSH_KEY #Скопируйте приватный ключ с компьютера, имеющего доступ к боевому серверу: cat ~/.ssh/id_rsa
-SSH_PASSWORD
-TELEGRAM_TOKEN #токен чат бота который будет отправлять сообщение
-TELEGRAM_CHAT_ID #кому отправлять сообщение
-DB_ENGINE пример django.db.backends.postgresql
-DB_NAME #имя образа docker-compose с базой - db
-DB_POSTGRES_USER
-DB_POSTGRES_PASSWORD
-DB_HOST
-DB_PORT
+- DOCKER_PASSWORD
+- DOCKER_USERNAME
+- SERVER_HOST #публичный адрес сервера для доступа по SSH
+- SERVER_SUDO_USER
+- SSH_KEY #Скопируйте приватный ключ с компьютера, имеющего доступ к боевому серверу: cat ~/.ssh/id_rsa
+- SSH_PASSWORD
+- TELEGRAM_TOKEN #токен чат бота который будет отправлять сообщение
+- TELEGRAM_CHAT_ID #кому отправлять сообщение
+- DB_ENGINE пример django.db.backends.postgresql
+- DB_NAME #имя образа docker-compose с базой - db
+- DB_POSTGRES_USER
+- DB_POSTGRES_PASSWORD
+- DB_HOST
+- DB_PORT
 
 #### Установка на выделенном сервере
 На боевом сервере установите docker и docker-compose
