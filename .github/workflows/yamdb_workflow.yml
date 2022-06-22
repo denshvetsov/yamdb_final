@@ -63,7 +63,6 @@ jobs:
             username: ${{ secrets.SERVER_SUDO_USER }}
             key: ${{ secrets.SSH_KEY }}
             passphrase: ${{ secrets.SSH_PASSWORD }}
-            stack_file_name: infra/docker-compose.yaml
             script: |
               sudo docker compose stop
               sudo docker compose rm web
