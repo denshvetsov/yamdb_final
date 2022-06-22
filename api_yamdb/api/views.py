@@ -13,19 +13,19 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import AccessToken
 from rest_framework_simplejwt.views import TokenViewBase
 
-from catalog.models import Category, Genre, Title
-from users.models import User
-from reviews.models import Review
 from .filters import TitleFilter
 from .mixins import ReviewGenreModelMixin
 from .permissions import (AdminOnly, IsAdminOrReadOnly,
-                          UserAndModeratorOrReadOnly)
+                          UserAndModeratorOrReadOnly,)
 from .serializers import (CategorySerializer, CommentsSerializer,
                           GenerateTokenSerializer, GenreSerializer,
                           ReviewSerializer, TitleCreateSerializer,
                           TitleSerializer, UserSerializer,
-                          UserSignUpSerializer)
+                          UserSignUpSerializer,)
 from .utils import check_confirmation_code, make_confirmation_code
+from catalog.models import Category, Genre, Title
+from reviews.models import Review
+from users.models import User
 
 
 class CategoryViewSet(ReviewGenreModelMixin):
