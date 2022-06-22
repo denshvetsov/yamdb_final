@@ -6,6 +6,7 @@ from .catalog.models import Category, Genre, Title
 from .reviews.models import Comments, Review
 from .users.models import User
 
+
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
