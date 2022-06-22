@@ -3,7 +3,7 @@ from rest_framework.relations import SlugRelatedField
 from rest_framework.validators import UniqueTogetherValidator, ValidationError
 
 from catalog.models import Category, Genre, Title
-from reviews.models import Review, Comments
+from reviews.models import Comments, Review
 from users.models import User
 
 
