@@ -29,7 +29,6 @@ jobs:
       run: |
         pytest
         python -m flake8
-        api_yamdb/python manage.py test
 
   build_and_push_to_docker_hub:
       name: Push Docker image to Docker Hub
@@ -64,7 +63,6 @@ jobs:
             username: ${{ secrets.SERVER_SUDO_USER }}
             key: ${{ secrets.SSH_KEY }}
             passphrase: ${{ secrets.SSH_PASSWORD }}
-            stack_file_name: infra/docker-compose.yaml
             script: |
               sudo docker compose stop
               sudo docker compose rm web
@@ -77,9 +75,9 @@ jobs:
               echo DB_HOST=${{ secrets.DB_HOST }} >> .env
               echo DB_PORT=${{ secrets.DB_PORT }} >> .env
               sudo docker compose up -d
-              # sudo docker compose exec -T web python manage.py makemigrations
-              # sudo docker compose exec -T web python manage.py migrate
-              # sudo docker compose exec -T web python manage.py collectstatic --no-input
+              sudo docker compose exec -T web python manage.py makemigrations
+              sudo docker compose exec -T web python manage.py migrate
+              sudo docker compose exec -T web python manage.py collectstatic --no-input
 
   send_message:
     runs-on: ubuntu-latest
