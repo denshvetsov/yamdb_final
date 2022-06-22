@@ -1,6 +1,6 @@
 from django_filters import rest_framework as filters
 
-from catalog.models import Title
+from .catalog.models import Title
 
 
 class TitleFilter(filters.FilterSet):
