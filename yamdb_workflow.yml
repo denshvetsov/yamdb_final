@@ -27,7 +27,7 @@ jobs:
 
     - name: Test with flake8 and django tests
       run: |
-        # pytest
+        pytest
         python -m flake8
         api_yamdb/python manage.py test
 
