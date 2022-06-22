@@ -1,8 +1,8 @@
 from django.db import models
 from django.conf import settings
 
-from .catalog.models import Title
-from .users.models import User
+from catalog.models import Title
+from users.models import User
 from .validators import validate_rating
 
 
