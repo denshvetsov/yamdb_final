@@ -1,6 +1,43 @@
 ![example workflow](https://github.com/denshvetsov/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
 
-### Описание проетка:
+### Установка
+#### Требования
+
+Требуется регистрация на dockerhub
+Настроенный SSH доступ к серверу по ключу с паролем
+Регистрация на GitHub
+Выделенный сервер Linux Ubuntu 20.04 с с публичным IP адресом
+
+#### Настройка GitHub Secrets
+Клонируйте репозиторий и настройте переменные GitHub secrets согласно Вашему окружению
+
+DOCKER_PASSWORD
+DOCKER_USERNAME
+SERVER_HOST #публичный адрес сервера для доступа по SSH
+SERVER_SUDO_USER
+SSH_KEY #Скопируйте приватный ключ с компьютера, имеющего доступ к боевому серверу: cat ~/.ssh/id_rsa
+SSH_PASSWORD
+TELEGRAM_TOKEN #токен чат бота который будет отправлять сообщение
+TELEGRAM_CHAT_ID #кому отправлять сообщение
+DB_ENGINE пример django.db.backends.postgresql
+DB_NAME #имя образа docker-compose с базой - db
+DB_POSTGRES_USER
+DB_POSTGRES_PASSWORD
+DB_HOST
+DB_PORT
+
+#### Установка на выделенном сервере
+На боевом сервере установите docker и docker-compose
+Остановите службу nginx
+Скопируйте файлы из директории infra в домашную папку пользователя
+    docker-compose.yaml
+    nginx - сохраняя стурктуру и название папок
+
+#### Deploy автоматически при команде git push
+при git pus запускается скрипт GitHub actions который выполняет автоматический deploy на сервер
+
+
+### Описание проекта:
 
 Проект YaMDb собирает отзывы пользователей на различные художественные произведения.
 
