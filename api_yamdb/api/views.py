@@ -14,8 +14,8 @@ from rest_framework_simplejwt.tokens import AccessToken
 from rest_framework_simplejwt.views import TokenViewBase
 
 from .catalog.models import Category, Genre, Title
-from .reviews.models import Review
 from .users.models import User
+from .reviews.models import Review
 from .filters import TitleFilter
 from .mixins import ReviewGenreModelMixin
 from .permissions import (AdminOnly, IsAdminOrReadOnly,
