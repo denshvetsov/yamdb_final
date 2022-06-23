@@ -13,6 +13,15 @@
 [![GitHub%20Actions](https://img.shields.io/badge/-GitHub%20Actions-464646?style=flat&logo=GitHub%20actions&logoColor=56C0C0&color=008080)](https://github.com/features/actions)
 [![Yandex.Cloud](https://img.shields.io/badge/-Yandex.Cloud-464646?style=flat&logo=Yandex.Cloud&logoColor=56C0C0&color=008080)](https://cloud.yandex.ru/)
 
+### demo
+denshvetsov/yamdb_final
+
+[Демо версия](http://yatube.duckdns.org/admin/)
+
+84.201.177.209
+http://yatube.duckdns.org/admin/
+http://yatube.duckdns.org/redoc/
+
 ### Установка
 #### Требования
 
