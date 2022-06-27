@@ -10,7 +10,6 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 
@@ -35,7 +34,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: tests
     steps:
-    - uses: actions/checkout@v2
     - name: Create projects directory
       uses: appleboy/ssh-action@master
       with:
@@ -60,7 +58,7 @@ jobs:
   build_and_push_to_docker_hub:
       name: Push Docker image to Docker Hub
       runs-on: ubuntu-latest
-      needs: tests
+      needs: copy_infra
       steps:
         - name: Check out the repo
           uses: actions/checkout@v2
