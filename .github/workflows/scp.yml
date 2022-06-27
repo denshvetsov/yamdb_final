@@ -1,0 +1,35 @@
+name: Copy docker-compose.yml, nginx.conf
+
+on: 
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**/README.md'
+
+jobs:
+  copy_infra:
+    name: Copy docker-compose.yml, nginx.conf
+    runs-on: ubuntu-latest
+    needs: build_and_push_to_docker_hub
+    steps:
+    - name: Create projects directory
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_SUDO_USER }}
+        key: ${{ secrets.SSH_KEY }}
+        passphrase: ${{ secrets.SSH_PASSWORD }}
+        script: |
+          sudo rm -rf production/yatube_final/
+          mkdir -p production/yatube_final/
+
+    - name: Copy files
+      uses: garygrossgarten/github-action-scp@release
+      with:
+          local: /Users/di/Production/yamdb_final/infra/
+          remote: /home/${{ secrets.SERVER_SUDO_USER }}/production/yatube_final/
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_SUDO_USER }}
+          privateKey: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSWORD }}
