@@ -13,8 +13,11 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
+    '10.0.1.100',
     'localhost',
     'web',
+    'demo.auxlink.com',
+    '95.165.26.109',
 ]
 
 INSTALLED_APPS = [
