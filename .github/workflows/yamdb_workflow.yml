@@ -89,10 +89,10 @@ jobs:
             key: ${{ secrets.SSH_KEY }}
             passphrase: ${{ secrets.SSH_PASSWORD }}
             script: |
-              echo ${{ secrets.SUDO_PASSWORD }} | sudo -S docker compose stop
-              echo ${{ secrets.SUDO_PASSWORD }} | sudo -S docker compose rm web
+              echo ${{ secrets.SERVER_SUDO_PASSWORD }} | sudo -S docker compose stop
+              echo ${{ secrets.SERVER_SUDO_PASSWORD }} | sudo -S docker compose rm web
               cd production/yatube_final/
-              echo ${{ secrets.SUDO_PASSWORD }} | sudo -S rm .env
+              echo ${{ secrets.SERVER_SUDO_PASSWORD }} | sudo -S rm .env
               touch .env
               echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
               echo DB_NAME=${{ secrets.DB_NAME }} >> .env
@@ -100,10 +100,10 @@ jobs:
               echo POSTGRES_PASSWORD=${{ secrets.DB_POSTGRES_PASSWORD }} >> .env
               echo DB_HOST=${{ secrets.DB_HOST }} >> .env
               echo DB_PORT=${{ secrets.DB_PORT }} >> .env
-              echo ${{ secrets.SUDO_PASSWORD }} | sudo -S docker compose up -d
-              echo ${{ secrets.SUDO_PASSWORD }} | sudo -S docker compose exec -T web python manage.py makemigrations
-              echo ${{ secrets.SUDO_PASSWORD }} | sudo -S docker compose exec -T web python manage.py migrate
-              echo ${{ secrets.SUDO_PASSWORD }} | sudo -S docker compose exec -T web python manage.py collectstatic --no-input
+              echo ${{ secrets.SERVER_SUDO_PASSWORD }} | sudo -S docker compose up -d
+              echo ${{ secrets.SERVER_SUDO_PASSWORD }} | sudo -S docker compose exec -T web python manage.py makemigrations
+              echo ${{ secrets.SERVER_SUDO_PASSWORD }} | sudo -S docker compose exec -T web python manage.py migrate
+              echo ${{ secrets.SERVER_SUDO_PASSWORD }} | sudo -S docker compose exec -T web python manage.py collectstatic --no-input
 
   send_message:
     runs-on: ubuntu-latest
