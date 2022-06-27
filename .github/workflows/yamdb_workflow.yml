@@ -89,10 +89,10 @@ jobs:
             key: ${{ secrets.SSH_KEY }}
             passphrase: ${{ secrets.SSH_PASSWORD }}
             script: |
-              sudo docker compose stop
-              sudo docker compose rm web
+              ${{ secrets.SUDO_PASSWORD }} | sudo -S docker compose stop
+              ${{ secrets.SUDO_PASSWORD }} | sudo -S docker compose rm web
               cd production/yatube_final/
-              sudo rm .env
+              ${{ secrets.SUDO_PASSWORD }} | sudo -S rm .env
               touch .env
               echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
               echo DB_NAME=${{ secrets.DB_NAME }} >> .env
@@ -100,10 +100,10 @@ jobs:
               echo POSTGRES_PASSWORD=${{ secrets.DB_POSTGRES_PASSWORD }} >> .env
               echo DB_HOST=${{ secrets.DB_HOST }} >> .env
               echo DB_PORT=${{ secrets.DB_PORT }} >> .env
-              sudo docker compose up -d
-              sudo docker compose exec -T web python manage.py makemigrations
-              sudo docker compose exec -T web python manage.py migrate
-              sudo docker compose exec -T web python manage.py collectstatic --no-input
+              ${{ secrets.SUDO_PASSWORD }} | sudo -S docker compose up -d
+              ${{ secrets.SUDO_PASSWORD }} | sudo -S docker compose exec -T web python manage.py makemigrations
+              ${{ secrets.SUDO_PASSWORD }} | sudo -S docker compose exec -T web python manage.py migrate
+              ${{ secrets.SUDO_PASSWORD }} | sudo -S docker compose exec -T web python manage.py collectstatic --no-input
 
   send_message:
     runs-on: ubuntu-latest
