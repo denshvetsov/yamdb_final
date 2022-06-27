@@ -26,7 +26,7 @@ jobs:
     - name: Copy files
       uses: garygrossgarten/github-action-scp@release
       with:
-          local: /Users/di/Production/yamdb_final/infra/
+          local: infra/
           remote: /home/${{ secrets.SERVER_SUDO_USER }}/production/yatube_final/
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_SUDO_USER }}
